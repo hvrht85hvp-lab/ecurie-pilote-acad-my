@@ -4,190 +4,158 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#26382d">
+
   <title>Écurie Pilot Academy</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f1e8;
-      color: #26352b;
-      text-align: center;
-    }
 
-    header {
-      background: #26352b;
-      color: white;
-      padding: 35px 20px;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 28px;
-    }
-
-    main {
-      padding: 35px 20px;
-    }
-
-    .card {
-      background: white;
-      padding: 24px;
-      margin: 18px auto;
-      max-width: 420px;
-      border-radius: 14px;
-      box-shadow: 0 3px 12px #00000012;
-    }
-
-    .button {
-      display: inline-block;
-      background: #a47745;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      margin-top: 10px;
-    }
-  </style>
-  
-<style>
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f5f1e8;
-    color: #29382d;
-  }
-
-  header {
-    background: #29382d;
-    color: white;
-    padding: 28px 20px;
-  }
-
-  header h1 {
-    margin: 0;
-    font-size: 25px;
-  }
-
-  header p {
-    color: #dfc49a;
-    margin-bottom: 0;
-  }
-
-  main {
-    padding: 20px;
-    max-width: 800px;
-    margin: auto;
-  }
-
-  section {
-    background: white;
-    padding: 20px;
-    margin: 16px 0;
-    border-radius: 12px;
-    box-shadow: 0 3px 10px #00000010;
-  }
-
-  section h3 {
-    margin-top: 0;
-  }
-
-  button {
-    background: #a77c45;
-    color: white;
-    border: none;
-    border-radius: 7px;
-    padding: 12px 16px;
-    font-size: 15px;
-    cursor: pointer;
-  }
-
-  button:active {
-    opacity: 0.8;
-  }
-</style>
-
-<style>
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f5f1e8;
-    color: #29382d;
-  }
-
-  header {
-    background: #29382d;
-    color: white;
-    padding: 28px 20px;
-  }
-
-  header h1 {
-    margin: 0;
-    font-size: 25px;
-  }
-
-  header p {
-    color: #dfc49a;
-  }
-
-  main {
-    padding: 20px;
-    max-width: 800px;
-    margin: auto;
-  }
-
-  section {
-    background: white;
-    padding: 20px;
-    margin: 16px 0;
-    border-radius: 12px;
-    box-shadow: 0 3px 10px #00000010;
-  }
-
-  button {
-    background: #a77c45;
-    color: white;
-    border: none;
-    border-radius: 7px;
-    padding: 12px 16px;
-    font-size: 15px;
-  }
-</style>
-
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
 </head>
+
 <body>
-  
-<header>
-  <h1>Écurie Pilot Academy</h1>
-  <p>Espace Coach</p>
-</header>
+  <header class="topbar">
+    <a class="brand" href="#accueil">
+      <span class="brand-icon">EP</span>
+      <span>
+        <strong>Écurie Pilot</strong>
+        <small>ACADEMY</small>
+      </span>
+    </a>
 
-<main>
-  <h2>Tableau de bord</h2>
-  <p>Bienvenue dans ton espace de travail.</p>
+    <span class="coach-label">ESPACE COACH</span>
+  </header>
 
-  <section>
-    <h3>Mes élèves</h3>
-    <p>Gérer les cavaliers que tu accompagnes.</p>
-    <button>Voir mes élèves</button>
-  </section>
+  <div class="layout">
+    <nav class="sidebar" aria-label="Navigation principale">
+      <a href="#accueil" class="nav-link active">⌂ Accueil</a>
+      <a href="#eleves" class="nav-link">♙ Mes élèves</a>
+      <a href="#chevaux" class="nav-link">♞ Mes chevaux</a>
+      <a href="#seances" class="nav-link">▤ Séances</a>
+      <a href="#formations" class="nav-link">▷ Formations</a>
+    </nav>
 
-  <section>
-    <h3>Mes chevaux</h3>
-    <p>Consulter les fiches et la progression des chevaux.</p>
-    <button>Voir mes chevaux</button>
-  </section>
+    <main id="contenu">
+      <section id="accueil" class="welcome">
+        <p class="eyebrow">TON ESPACE DE TRAVAIL</p>
+        <h1>Bienvenue dans ton académie.</h1>
+        <p>
+          Organise tes séances, accompagne tes élèves
+          et fais progresser chaque cheval à son rythme.
+        </p>
+      </section>
 
-  <section>
-    <h3>Programmes de travail</h3>
-    <p>Préparer les exercices personnalisés de chaque jour.</p>
-    <button>Gérer les programmes</button>
-  </section>
+      <section class="stats" aria-label="Résumé de l'activité">
+        <article class="stat-card">
+          <span>Élèves</span>
+          <strong id="nombre-eleves">0</strong>
+        </article>
 
-  <section>
-    <h3>Messages et vidéos</h3>
-    <p>Suivre les échanges et les corrections vidéo.</p>
-    <button>Voir les messages</button>
-  </section>
-</main>
+        <article class="stat-card">
+          <span>Chevaux</span>
+          <strong id="nombre-chevaux">0</strong>
+        </article>
+
+        <article class="stat-card">
+          <span>Séances prévues</span>
+          <strong id="nombre-seances">0</strong>
+        </article>
+      </section>
+
+      <section id="eleves" class="panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">ACCOMPAGNEMENT</p>
+            <h2>Mes élèves</h2>
+          </div>
+          <button id="ajouter-eleve" class="button">
+            + Ajouter
+          </button>
+        </div>
+
+        <form id="form-eleve" class="entry-form" hidden>
+          <label for="nom-eleve">Nom de l'élève</label>
+          <input id="nom-eleve" name="nom" required
+            placeholder="Ex. Camille Martin">
+
+          <div class="form-actions">
+            <button type="submit" class="button">
+              Enregistrer
+            </button>
+            <button type="button" id="annuler-eleve"
+              class="button secondary">
+              Annuler
+            </button>
+          </div>
+        </form>
+
+        <ul id="liste-eleves" class="item-list">
+          <li class="empty">Aucun élève enregistré pour le moment.</li>
+        </ul>
+      </section>
+
+      <section id="chevaux" class="panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">SUIVI INDIVIDUEL</p>
+            <h2>Mes chevaux</h2>
+          </div>
+          <button id="ajouter-cheval" class="button">
+            + Ajouter
+          </button>
+        </div>
+
+        <form id="form-cheval" class="entry-form" hidden>
+          <label for="nom-cheval">Nom du cheval</label>
+          <input id="nom-cheval" name="nom" required
+            placeholder="Ex. Quatsou GR">
+
+          <label for="objectif-cheval">Objectif de travail</label>
+          <select id="objectif-cheval" name="objectif">
+            <option>Débourrage</option>
+            <option>Chargement en van ou camion</option>
+            <option>Rééducation comportementale</option>
+            <option>Travail à pied</option>
+            <option>Travail monté</option>
+          </select>
+
+          <div class="form-actions">
+            <button type="submit" class="button">
+              Enregistrer
+            </button>
+            <button type="button" id="annuler-cheval"
+              class="button secondary">
+              Annuler
+            </button>
+          </div>
+        </form>
+
+        <ul id="liste-chevaux" class="item-list">
+          <li class="empty">Aucun cheval enregistré pour le moment.</li>
+        </ul>
+      </section>
+
+      <section id="seances" class="panel">
+        <p class="eyebrow">PROGRAMMES PERSONNALISÉS</p>
+        <h2>Mes séances</h2>
+        <p>
+          Le module de planification quotidienne sera développé
+          dans une prochaine étape.
+        </p>
+      </section>
+
+      <section id="formations" class="panel">
+        <p class="eyebrow">APPRENDRE ET TRANSMETTRE</p>
+        <h2>Formations et vidéos</h2>
+        <p>
+          Nous ajouterons ici tes formations, ta vidéothèque
+          et les liens vers tes vidéos pédagogiques.
+        </p>
+      </section>
+
+      <footer>
+        Écurie Pilot Academy · Construire la confiance, pas à pas.
+      </footer>
+    </main>
+  </div>
 </body>
 </html>
