@@ -60,5 +60,21 @@ if (formulaireEleve && champNomEleve && listeEleves) {
     champNomEleve.value = "";
   });
 }
+function afficherEleves() {
+  const liste = document.getElementById("liste-eleves");
+
+  if (!liste) return;
+
+  liste.innerHTML = "";
+
+  eleves.forEach(function (eleve) {
+    const ligne = document.createElement("li");
+    ligne.textContent = eleve.nom;
+    liste.appendChild(ligne);
+  });
+}
+
+afficherEleves();
+
 
 
