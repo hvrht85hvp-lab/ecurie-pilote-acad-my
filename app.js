@@ -38,4 +38,26 @@ if (formulaireEleve) {
     champNomEleve.value = "";
   });
 }
+const formulaireEleve = document.getElementById("form-eleve");
+const champNomEleve = document.getElementById("nom-eleve");
+const listeEleves = document.getElementById("liste-eleves");
+
+if (formulaireEleve && champNomEleve && listeEleves) {
+  formulaireEleve.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    ajouterEleve(champNomEleve.value);
+
+    listeEleves.innerHTML = "";
+
+    eleves.forEach(function (eleve) {
+      const ligne = document.createElement("li");
+      ligne.textContent = eleve.nom;
+      listeEleves.appendChild(ligne);
+    });
+
+    champNomEleve.value = "";
+  });
+}
+
 
