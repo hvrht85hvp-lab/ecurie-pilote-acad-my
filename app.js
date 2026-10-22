@@ -1,4 +1,5 @@
-const eleves = [];
+const eleves = JSON.parse(localStorage.getItem("ecuriePilotEleves") || "[]");
+
 
 function ajouterEleve(nom) {
   const nomPropre = nom.trim();
