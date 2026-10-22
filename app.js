@@ -13,8 +13,8 @@ function ajouterEleve(nom) {
     id: Date.now(),
     nom: nomPropre
   });
-
-  console.log("Élève ajouté :", nomPropre);
+localStorage.setItem("ecuriePilotEleves", JSON.stringify(eleves));
+console.log("Élève ajouté :", nomPropre);
   console.log("Liste des élèves :", eleves);
 }
 
