@@ -69,10 +69,33 @@ function afficherEleves() {
 
   eleves.forEach(function (eleve) {
     const ligne = document.createElement("li");
-    ligne.textContent = eleve.nom;
+    const nom = document.createElement("span");
+    const bouton = document.createElement("button");
+
+    nom.textContent = eleve.nom;
+    bouton.textContent = "Supprimer";
+
+    bouton.addEventListener("click", function () {
+      const index = eleves.findIndex(function (item) {
+        return item.id === eleve.id;
+      });
+
+      if (index !== -1) {
+        eleves.splice(index, 1);
+        localStorage.setItem(
+          "ecuriePilotEleves",
+          JSON.stringify(eleves)
+        );
+        afficherEleves();
+      }
+    });
+
+    ligne.appendChild(nom);
+    ligne.appendChild(bouton);
     liste.appendChild(ligne);
   });
 }
+
 
 afficherEleves();
 
