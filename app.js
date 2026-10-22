@@ -51,11 +51,11 @@ if (formulaireEleve && champNomEleve && listeEleves) {
 
     listeEleves.innerHTML = "";
 
-    eleves.forEach(function (eleve) {
-      const ligne = document.createElement("li");
-      ligne.textContent = eleve.nom;
-      listeEleves.appendChild(ligne);
-    });
+eleves.forEach(function (eleve) {
+  const ligne = document.createElement("li");
+  ligne.textContent = eleve.nom;
+  listeEleves.appendChild(ligne);
+});
 
     champNomEleve.value = "";
   });
