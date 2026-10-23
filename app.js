@@ -178,6 +178,21 @@ if (formulaireCheval && champNomCheval && listeChevaux) {
 }
 
 afficherChevaux();
+function obtenirFicheCheval(id) {
+  const cheval = chevaux.find(function (item) {
+    return item.id === id;
+  });
 
+  if (!cheval) {
+    alert("Cheval introuvable.");
+    return;
+  }
+
+  const fiche =
+    "Nom : " + cheval.nom + "\n" +
+    "Objectif de travail : " + cheval.objectif;
+
+  alert(fiche);
+}
 
 
