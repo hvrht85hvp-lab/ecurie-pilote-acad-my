@@ -74,7 +74,13 @@ function afficherEleves() {
 
     nom.textContent = eleve.nom;
     bouton.textContent = "Supprimer";
+const boutonFiche = document.createElement("button");
+boutonFiche.textContent = "Voir la fiche";
+boutonFiche.type = "button";
 
+boutonFiche.addEventListener("click", function () {
+  obtenirFicheCheval(cheval.id);
+});
     bouton.addEventListener("click", function () {
       const index = eleves.findIndex(function (item) {
         return item.id === eleve.id;
