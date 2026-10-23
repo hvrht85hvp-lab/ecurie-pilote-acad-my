@@ -98,6 +98,32 @@ function afficherEleves() {
 
 
 afficherEleves();
+const chevaux = JSON.parse(
+  localStorage.getItem("ecuriePilotChevaux") || "[]"
+);
+
+function ajouterCheval(nom, objectif) {
+  const nomPropre = nom.trim();
+
+  if (nomPropre === "") {
+    alert("Entre le nom du cheval.");
+    return;
+  }
+
+  chevaux.push({
+    id: Date.now(),
+    nom: nomPropre,
+    objectif: objectif || "À définir"
+  });
+
+  localStorage.setItem(
+    "ecuriePilotChevaux",
+    JSON.stringify(chevaux)
+  );
+
+  console.log("Cheval ajouté :", nomPropre);
+}
+
 
 
 
