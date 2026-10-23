@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#26382d">
+  <meta name="theme-color" content="#203b32">
+  <meta name="description" content="Écurie Pilot Academy : plateforme de coaching et de formation équestre.">
 
   <title>Écurie Pilot Academy</title>
 
@@ -12,173 +14,190 @@
 </head>
 
 <body>
-  <header class="topbar">
-    <a class="brand" href="#accueil">
-      <span class="brand-icon">EP</span>
+  <header class="app-header">
+    <a href="#accueil" class="brand" data-page="accueil">
+      <span class="brand-icon">🐴</span>
       <span>
         <strong>Écurie Pilot</strong>
         <small>ACADEMY</small>
       </span>
     </a>
 
-    <span class="coach-label">ESPACE COACH</span>
+    <button
+      id="menu-toggle"
+      class="menu-toggle"
+      type="button"
+      aria-label="Ouvrir le menu"
+      aria-expanded="false"
+    >
+      ☰
+    </button>
+
+    <nav id="menu-principal" class="main-nav" aria-label="Menu principal">
+      <a href="#accueil" data-page="accueil">Accueil</a>
+      <a href="#coach" data-page="coach">Espace Coach</a>
+      <a href="#eleve" data-page="eleve">Espace Élève</a>
+    </nav>
   </header>
 
-  <div class="layout">
-    <nav class="sidebar" aria-label="Navigation principale">
-      <a href="#accueil" class="nav-link active">⌂ Accueil</a>
-      <a href="#eleves" class="nav-link">♙ Mes élèves</a>
-      <a href="#chevaux" class="nav-link">♞ Mes chevaux</a>
-      <a href="#seances" class="nav-link">▤ Séances</a>
-      <a href="#formations" class="nav-link">▷ Formations</a>
-    </nav>
-
-    <main id="contenu">
-      <section id="accueil" class="welcome">
-        <p class="eyebrow">TON ESPACE DE TRAVAIL</p>
-        <h1>Bienvenue dans ton académie.</h1>
+  <main id="contenu-principal">
+    <section id="page-accueil" class="page active">
+      <div class="hero">
+        <p class="eyebrow">APPRENDRE · PROGRESSER · COMPRENDRE</p>
+        <h1>Bienvenue chez Écurie Pilot Academy</h1>
         <p>
-          Organise tes séances, accompagne tes élèves
-          et fais progresser chaque cheval à son rythme.
+          Une approche personnalisée pour faire progresser chaque cheval
+          et chaque cavalier.
         </p>
-      </section>
 
-      <section class="stats" aria-label="Résumé de l'activité">
-        <article class="stat-card">
-          <span>Élèves</span>
-          <strong id="nombre-eleves">0</strong>
-        </article>
-
-        <article class="stat-card">
-          <span>Chevaux</span>
-          <strong id="nombre-chevaux">0</strong>
-        </article>
-
-        <article class="stat-card">
-          <span>Séances prévues</span>
-          <strong id="nombre-seances">0</strong>
-        </article>
-      </section>
-
-      <section id="eleves" class="panel">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">ACCOMPAGNEMENT</p>
-            <h2>Mes élèves</h2>
-          </div>
-          <button id="ajouter-eleve" class="button">
-            + Ajouter
+        <div class="hero-actions">
+          <button class="button" type="button" data-page="eleve">
+            Mon espace élève
+          </button>
+          <button class="button button-secondary" type="button" data-page="coach">
+            Espace Coach
           </button>
         </div>
+      </div>
 
-        <form id="form-eleve" class="entry-form" hidden>
-          <label for="nom-eleve">Nom de l'élève</label>
-          <input id="nom-eleve" name="nom" required
-            placeholder="Ex. Camille Martin">
+      <div class="section-heading">
+        <p class="eyebrow">L'ACADÉMIE</p>
+        <h2>Un accompagnement à chaque étape</h2>
+      </div>
 
-          <div class="form-actions">
-            <button type="submit" class="button">
-              Enregistrer
-            </button>
-            <button type="button" id="annuler-eleve"
-              class="button secondary">
-              Annuler
-            </button>
-          </div>
-        </form>
-        <h3>Ajouter un cheval</h3>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <span class="feature-icon">🌱</span>
+          <h3>Débourrage</h3>
+          <p>Construire des bases solides et une relation de confiance.</p>
+        </article>
 
-<form id="form-cheval" class="entry-form">
-  <label for="nom-cheval">Nom du cheval</label>
-  <input
-    id="nom-cheval"
-    name="nom"
-    required
-    placeholder="Ex. Montana"
-  >
+        <article class="feature-card">
+          <span class="feature-icon">🧭</span>
+          <h3>Rééducation</h3>
+          <p>Travailler progressivement sur les difficultés rencontrées.</p>
+        </article>
 
-  <label for="objectif-cheval">Objectif de travail</label>
-  <input
-    id="objectif-cheval"
-    name="objectif"
-    placeholder="Ex. Chargement en van"
-  >
+        <article class="feature-card">
+          <span class="feature-icon">🚚</span>
+          <h3>Chargement</h3>
+          <p>Préparer le cheval au transport avec une méthode adaptée.</p>
+        </article>
 
-  <button type="submit" class="button">
-    Enregistrer le cheval
-  </button>
-</form>
+        <article class="feature-card">
+          <span class="feature-icon">🤝</span>
+          <h3>Travail à pied et monté</h3>
+          <p>Développer la communication, la confiance et la progression.</p>
+        </article>
+      </div>
+    </section>
 
-<ul id="liste-chevaux"></ul>
+    <section id="page-coach" class="page" hidden>
+      <div class="page-heading">
+        <p class="eyebrow">GESTION DE L'ACADÉMIE</p>
+        <h1>Espace Coach</h1>
+        <p>Retrouve les outils pour organiser ton accompagnement.</p>
+      </div>
 
-        <ul id="liste-eleves" class="item-list">
-          <li class="empty">Aucun élève enregistré pour le moment.</li>
-        </ul>
-      </section>
+      <div class="dashboard-grid">
+        <button class="dashboard-card" type="button" data-page="coach-eleves">
+          <span>👥</span>
+          <strong>Mes élèves</strong>
+          <small>Profils et suivi des élèves</small>
+        </button>
 
-      <section id="chevaux" class="panel">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">SUIVI INDIVIDUEL</p>
-            <h2>Mes chevaux</h2>
-          </div>
-          <button id="ajouter-cheval" class="button">
-            + Ajouter
-          </button>
-        </div>
+        <button class="dashboard-card" type="button" data-page="coach-chevaux">
+          <span>🐴</span>
+          <strong>Mes chevaux</strong>
+          <small>Fiches et observations</small>
+        </button>
 
-        <form id="form-cheval" class="entry-form" hidden>
-          <label for="nom-cheval">Nom du cheval</label>
-          <input id="nom-cheval" name="nom" required
-            placeholder="Ex. Quatsou GR">
+        <button class="dashboard-card" type="button" data-page="coach-programmes">
+          <span>📋</span>
+          <strong>Programmes</strong>
+          <small>Exercices et objectifs</small>
+        </button>
 
-          <label for="objectif-cheval">Objectif de travail</label>
-          <select id="objectif-cheval" name="objectif">
-            <option>Débourrage</option>
-            <option>Chargement en van ou camion</option>
-            <option>Rééducation comportementale</option>
-            <option>Travail à pied</option>
-            <option>Travail monté</option>
-          </select>
+        <button class="dashboard-card" type="button" data-page="coach-seances">
+          <span>📅</span>
+          <strong>Mes séances</strong>
+          <small>Organisation et progression</small>
+        </button>
 
-          <div class="form-actions">
-            <button type="submit" class="button">
-              Enregistrer
-            </button>
-            <button type="button" id="annuler-cheval"
-              class="button secondary">
-              Annuler
-            </button>
-          </div>
-        </form>
+        <button class="dashboard-card" type="button" data-page="coach-videos">
+          <span>🎥</span>
+          <strong>Vidéos</strong>
+          <small>Bibliothèque pédagogique</small>
+        </button>
 
-        <ul id="liste-chevaux" class="item-list">
-          <li class="empty">Aucun cheval enregistré pour le moment.</li>
-        </ul>
-      </section>
+        <button class="dashboard-card" type="button" data-page="coach-messages">
+          <span>💬</span>
+          <strong>Messages</strong>
+          <small>Échanges avec les élèves</small>
+        </button>
+      </div>
+    </section>
 
-      <section id="seances" class="panel">
-        <p class="eyebrow">PROGRAMMES PERSONNALISÉS</p>
-        <h2>Mes séances</h2>
-        <p>
-          Le module de planification quotidienne sera développé
-          dans une prochaine étape.
-        </p>
-      </section>
+    <section id="page-eleve" class="page" hidden>
+      <div class="page-heading">
+        <p class="eyebrow">MON ACCOMPAGNEMENT</p>
+        <h1>Espace Élève</h1>
+        <p>Retrouve tes objectifs, tes exercices et tes progrès.</p>
+      </div>
 
-      <section id="formations" class="panel">
-        <p class="eyebrow">APPRENDRE ET TRANSMETTRE</p>
-        <h2>Formations et vidéos</h2>
-        <p>
-          Nous ajouterons ici tes formations, ta vidéothèque
-          et les liens vers tes vidéos pédagogiques.
-        </p>
-      </section>
+      <div class="dashboard-grid">
+        <button class="dashboard-card" type="button" data-page="eleve-programme">
+          <span>📋</span>
+          <strong>Mon programme</strong>
+          <small>Les exercices à réaliser</small>
+        </button>
 
-      <footer>
-        Écurie Pilot Academy · Construire la confiance, pas à pas.
-      </footer>
-    </main>
-  </div>
+        <button class="dashboard-card" type="button" data-page="eleve-cheval">
+          <span>🐴</span>
+          <strong>Mon cheval</strong>
+          <small>Objectifs et suivi</small>
+        </button>
+
+        <button class="dashboard-card" type="button" data-page="eleve-progres">
+          <span>📈</span>
+          <strong>Mes progrès</strong>
+          <small>Suivre mon évolution</small>
+        </button>
+
+        <button class="dashboard-card" type="button" data-page="eleve-videos">
+          <span>🎥</span>
+          <strong>Mes vidéos</strong>
+          <small>Supports de formation</small>
+        </button>
+
+        <button class="dashboard-card" type="button" data-page="eleve-messages">
+          <span>💬</span>
+          <strong>Mes échanges</strong>
+          <small>Contacter le coach</small>
+        </button>
+      </div>
+    </section>
+
+    <section id="page-outil" class="page" hidden>
+      <button class="text-button" type="button" data-page="accueil">
+        ← Retour à l'accueil
+      </button>
+      <div class="page-heading">
+        <p class="eyebrow">ÉCURIE PILOT ACADEMY</p>
+        <h1 id="titre-outil">Mon espace</h1>
+        <p id="description-outil"></p>
+      </div>
+      <div class="placeholder-card">
+        <span>🚧</span>
+        <h2>Cette rubrique est en préparation</h2>
+        <p>Nous allons construire cette fonctionnalité progressivement.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>Écurie Pilot Academy</p>
+    <small>Progresser ensemble, un exercice à la fois.</small>
+  </footer>
 </body>
 </html>
