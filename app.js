@@ -196,9 +196,17 @@ function obtenirFicheCheval(id) {
     return;
   }
 
-  const fiche =
-    "Nom : " + cheval.nom + "\n" +
-    "Objectif de travail : " + cheval.objectif;
+  const notesTexte = (cheval.notes || [])
+  .map(function (note) {
+    return note.date + " : " + note.texte;
+  })
+  .join("\n");
+
+const fiche =
+  "Nom : " + cheval.nom + "\n" +
+  "Objectif de travail : " + cheval.objectif + "\n\n" +
+  "Notes de suivi :\n" +
+  (notesTexte || "Aucune note pour le moment.");
 
   alert(fiche);
 }
