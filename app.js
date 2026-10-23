@@ -97,6 +97,7 @@ boutonFiche.addEventListener("click", function () {
     });
 
     ligne.appendChild(nom);
+    ligne.appendChild(boutonFiche);
     ligne.appendChild(bouton);
     liste.appendChild(ligne);
   });
