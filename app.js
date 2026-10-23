@@ -118,10 +118,11 @@ function ajouterCheval(nom, objectif) {
   }
 
   chevaux.push({
-    id: Date.now(),
-    nom: nomPropre,
-    objectif: objectif || "À définir"
-  });
+  id: Date.now(),
+  nom: nomPropre,
+  objectif: objectif || "À définir",
+  notes: []
+});
 
   localStorage.setItem(
     "ecuriePilotChevaux",
