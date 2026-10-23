@@ -202,5 +202,37 @@ function obtenirFicheCheval(id) {
 
   alert(fiche);
 }
+function ajouterNoteCheval(id, texte) {
+  const cheval = chevaux.find(function (item) {
+    return item.id === id;
+  });
 
+  if (!cheval) {
+    alert("Cheval introuvable.");
+    return;
+  }
+
+  const notePropre = texte.trim();
+
+  if (notePropre === "") {
+    alert("Écris une note avant de l'enregistrer.");
+    return;
+  }
+
+  if (!cheval.notes) {
+    cheval.notes = [];
+  }
+
+  cheval.notes.push({
+    date: new Date().toLocaleDateString("fr-FR"),
+    texte: notePropre
+  });
+
+  localStorage.setItem(
+    "ecuriePilotChevaux",
+    JSON.stringify(chevaux)
+  );
+
+  alert("Note enregistrée pour " + cheval.nom + " !");
+}
 
