@@ -1,249 +1,155 @@
-const eleves = JSON.parse(localStorage.getItem("ecuriePilotEleves") || "[]");
 
+const pages = {
+  accueil: {
+    titre: "Accueil",
+    description: "Bienvenue chez Écurie Pilot Academy."
+  },
+  coach: {
+    titre: "Espace Coach",
+    description: "Organise ton académie et accompagne tes élèves."
+  },
+  eleve: {
+    titre: "Espace Élève",
+    description: "Retrouve tes objectifs et ton accompagnement."
+  },
+  "coach-eleves": {
+    titre: "Mes élèves",
+    description: "Gère les profils et le suivi de tes élèves."
+  },
+  "coach-chevaux": {
+    titre: "Mes chevaux",
+    description: "Consulte les fiches et les observations des chevaux."
+  },
+  "coach-programmes": {
+    titre: "Programmes",
+    description: "Prépare des programmes de travail personnalisés."
+  },
+  "coach-seances": {
+    titre: "Mes séances",
+    description: "Organise tes séances et suis la progression."
+  },
+  "coach-videos": {
+    titre: "Bibliothèque vidéo",
+    description: "Retrouve tes supports pédagogiques."
+  },
+  "coach-messages": {
+    titre: "Messages",
+    description: "Espace prévu pour les échanges avec les élèves."
+  },
+  "eleve-programme": {
+    titre: "Mon programme",
+    description: "Découvre les exercices de ton programme."
+  },
+  "eleve-cheval": {
+    titre: "Mon cheval",
+    description: "Retrouve les objectifs et le suivi de ton cheval."
+  },
+  "eleve-progres": {
+    titre: "Mes progrès",
+    description: "Suis ton évolution au fil des séances."
+  },
+  "eleve-videos": {
+    titre: "Mes vidéos",
+    description: "Consulte les vidéos de ta formation."
+  },
+  "eleve-messages": {
+    titre: "Mes échanges",
+    description: "Retrouve ici ton espace d'échange avec le coach."
+  }
+};
 
-function ajouterEleve(nom) {
-  const nomPropre = nom.trim();
+function afficherPage(nomPage) {
+  const pageDemandee = pages[nomPage] ? nomPage : "accueil";
 
-  if (nomPropre === "") {
-    alert("Entre le nom de l'élève.");
-    return;
+  document.querySelectorAll(".page").forEach(function (page) {
+    page.hidden = true;
+    page.classList.remove("active");
+  });
+
+  if (pageDemandee === "accueil" ||
+      pageDemandee === "coach" ||
+      pageDemandee === "eleve") {
+    const section = document.getElementById("page-" + pageDemandee);
+
+    if (section) {
+      section.hidden = false;
+      section.classList.add("active");
+    }
+  } else {
+    const pageOutil = document.getElementById("page-outil");
+    const titre = document.getElementById("titre-outil");
+    const description = document.getElementById("description-outil");
+
+    if (pageOutil) {
+      pageOutil.hidden = false;
+      pageOutil.classList.add("active");
+    }
+
+    if (titre) {
+      titre.textContent = pages[pageDemandee].titre;
+    }
+
+    if (description) {
+      description.textContent = pages[pageDemandee].description;
+    }
   }
 
-  eleves.push({
-    id: Date.now(),
-    nom: nomPropre
-  });
-localStorage.setItem("ecuriePilotEleves", JSON.stringify(eleves));
-console.log("Élève ajouté :", nomPropre);
-  console.log("Liste des élèves :", eleves);
-}
-
-const formulaireEleve = document.getElementById("form-eleve");
-const champNomEleve = document.getElementById("nom-eleve");
-const listeEleves = document.getElementById("liste-eleves");
-
-if (formulaireEleve) {
-  formulaireEleve.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    ajouterEleve(champNomEleve.value);
-
-    listeEleves.innerHTML = "";
-
-    eleves.forEach(function (eleve) {
-      const ligne = document.createElement("li");
-      ligne.textContent = eleve.nom;
-      listeEleves.appendChild(ligne);
-    });
-
-    champNomEleve.value = "";
-  });
-}
-const formulaireEleve = document.getElementById("form-eleve");
-const champNomEleve = document.getElementById("nom-eleve");
-const listeEleves = document.getElementById("liste-eleves");
-
-if (formulaireEleve && champNomEleve && listeEleves) {
-  formulaireEleve.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    ajouterEleve(champNomEleve.value);
-
-    listeEleves.innerHTML = "";
-
-eleves.forEach(function (eleve) {
-  const ligne = document.createElement("li");
-  ligne.textContent = eleve.nom;
-  listeEleves.appendChild(ligne);
-});
-
-    champNomEleve.value = "";
-  });
-}
-function afficherEleves() {
-  const liste = document.getElementById("liste-eleves");
-
-  if (!liste) return;
-
-  liste.innerHTML = "";
-
-  eleves.forEach(function (eleve) {
-    const ligne = document.createElement("li");
-    const nom = document.createElement("span");
-    const bouton = document.createElement("button");
-
-    nom.textContent = eleve.nom;
-    bouton.textContent = "Supprimer";
-const boutonFiche = document.createElement("button");
-boutonFiche.textContent = "Voir la fiche élève";
-boutonFiche.type = "button";
-
-boutonFiche.addEventListener("click", function () {
-  alert("Élève : " + eleve.nom);
-});
-    bouton.addEventListener("click", function () {
-      const index = eleves.findIndex(function (item) {
-        return item.id === eleve.id;
-      });
-
-      if (index !== -1) {
-        eleves.splice(index, 1);
-        localStorage.setItem(
-          "ecuriePilotEleves",
-          JSON.stringify(eleves)
-        );
-        afficherEleves();
+  document.querySelectorAll("[data-page]").forEach(function (element) {
+    if (element.tagName === "A") {
+      if (element.dataset.page === pageDemandee) {
+        element.classList.add("active");
+      } else {
+        element.classList.remove("active");
       }
-    });
-
-    ligne.appendChild(nom);
-    ligne.appendChild(boutonFiche);
-    ligne.appendChild(bouton);
-    liste.appendChild(ligne);
+    }
   });
-}
 
+  const menu = document.getElementById("menu-principal");
+  const boutonMenu = document.getElementById("menu-toggle");
 
-afficherEleves();
-const chevaux = JSON.parse(
-  localStorage.getItem("ecuriePilotChevaux") || "[]"
-);
-
-function ajouterCheval(nom, objectif) {
-  const nomPropre = nom.trim();
-
-  if (nomPropre === "") {
-    alert("Entre le nom du cheval.");
-    return;
+  if (menu) {
+    menu.classList.remove("open");
   }
 
-  chevaux.push({
-  id: Date.now(),
-  nom: nomPropre,
-  objectif: objectif || "À définir",
-  notes: []
-});
+  if (boutonMenu) {
+    boutonMenu.setAttribute("aria-expanded", "false");
+  }
 
-  localStorage.setItem(
-    "ecuriePilotChevaux",
-    JSON.stringify(chevaux)
-  );
-
-  console.log("Cheval ajouté :", nomPropre);
-}
-const formulaireCheval = document.getElementById("form-cheval");
-const champNomCheval = document.getElementById("nom-cheval");
-const champObjectifCheval = document.getElementById("objectif-cheval");
-const listeChevaux = document.getElementById("liste-chevaux");
-
-function afficherChevaux() {
-  if (!listeChevaux) return;
-
-  listeChevaux.innerHTML = "";
-
-  chevaux.forEach(function (cheval) {
-    const ligne = document.createElement("li");
-    const texte = document.createElement("span");
-    const bouton = document.createElement("button");
-
-    texte.textContent = cheval.nom + " — " + cheval.objectif;
-    bouton.textContent = "Supprimer";
-    bouton.type = "button";
-
-    bouton.addEventListener("click", function () {
-      const index = chevaux.findIndex(function (item) {
-        return item.id === cheval.id;
-      });
-
-      if (index !== -1) {
-        chevaux.splice(index, 1);
-        localStorage.setItem(
-          "ecuriePilotChevaux",
-          JSON.stringify(chevaux)
-        );
-        afficherChevaux();
-      }
-    });
-
-    ligne.appendChild(texte);
-    ligne.appendChild(bouton);
-    listeChevaux.appendChild(ligne);
-  });
+  window.scrollTo(0, 0);
 }
 
-if (formulaireCheval && champNomCheval && listeChevaux) {
-  formulaireCheval.addEventListener("submit", function (event) {
+document.querySelectorAll("[data-page]").forEach(function (element) {
+  element.addEventListener("click", function (event) {
     event.preventDefault();
 
-    ajouterCheval(
-      champNomCheval.value,
-      champObjectifCheval.value
+    const nomPage = element.dataset.page;
+    afficherPage(nomPage);
+
+    if (window.location.hash !== "#" + nomPage) {
+      window.location.hash = nomPage;
+    }
+  });
+});
+
+const boutonMenu = document.getElementById("menu-toggle");
+const menuPrincipal = document.getElementById("menu-principal");
+
+if (boutonMenu && menuPrincipal) {
+  boutonMenu.addEventListener("click", function () {
+    const menuOuvert = menuPrincipal.classList.toggle("open");
+
+    boutonMenu.setAttribute(
+      "aria-expanded",
+      String(menuOuvert)
     );
-
-    afficherChevaux();
-    formulaireCheval.reset();
   });
 }
 
-afficherChevaux();
-function obtenirFicheCheval(id) {
-  const cheval = chevaux.find(function (item) {
-    return item.id === id;
-  });
-
-  if (!cheval) {
-    alert("Cheval introuvable.");
-    return;
-  }
-
-  const notesTexte = (cheval.notes || [])
-  .map(function (note) {
-    return note.date + " : " + note.texte;
-  })
-  .join("\n");
-
-const notesTexte = (cheval.notes || [])
-  .map(function (note) {
-    return note.date + " : " + note.texte;
-  })
-  .join("\n");
-
-const fiche =
-  "Nom : " + cheval.nom + "\n" +
-  "Objectif de travail : " + cheval.objectif + "\n\n" +
-  "Notes de suivi :\n" +
-  (notesTexte || "Aucune note pour le moment.");
-function ajouterNoteCheval(id, texte) {
-  const cheval = chevaux.find(function (item) {
-    return item.id === id;
-  });
-
-  if (!cheval) {
-    alert("Cheval introuvable.");
-    return;
-  }
-
-  const notePropre = texte.trim();
-
-  if (notePropre === "") {
-    alert("Écris une note avant de l'enregistrer.");
-    return;
-  }
-
-  if (!cheval.notes) {
-    cheval.notes = [];
-  }
-
-  cheval.notes.push({
-    date: new Date().toLocaleDateString("fr-FR"),
-    texte: notePropre
-  });
-
-  localStorage.setItem(
-    "ecuriePilotChevaux",
-    JSON.stringify(chevaux)
-  );
-
-  alert("Note enregistrée pour " + cheval.nom + " !");
+function chargerPageDepuisAdresse() {
+  const nomPage = window.location.hash.replace("#", "") || "accueil";
+  afficherPage(nomPage);
 }
 
+window.addEventListener("hashchange", chargerPageDepuisAdresse);
+
+chargerPageDepuisAdresse();
