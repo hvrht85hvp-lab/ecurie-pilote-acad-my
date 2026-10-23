@@ -202,14 +202,17 @@ function obtenirFicheCheval(id) {
   })
   .join("\n");
 
+const notesTexte = (cheval.notes || [])
+  .map(function (note) {
+    return note.date + " : " + note.texte;
+  })
+  .join("\n");
+
 const fiche =
   "Nom : " + cheval.nom + "\n" +
   "Objectif de travail : " + cheval.objectif + "\n\n" +
   "Notes de suivi :\n" +
   (notesTexte || "Aucune note pour le moment.");
-
-  alert(fiche);
-}
 function ajouterNoteCheval(id, texte) {
   const cheval = chevaux.find(function (item) {
     return item.id === id;
