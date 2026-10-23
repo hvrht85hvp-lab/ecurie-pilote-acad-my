@@ -87,6 +87,30 @@
             </button>
           </div>
         </form>
+        <h3>Ajouter un cheval</h3>
+
+<form id="form-cheval" class="entry-form">
+  <label for="nom-cheval">Nom du cheval</label>
+  <input
+    id="nom-cheval"
+    name="nom"
+    required
+    placeholder="Ex. Montana"
+  >
+
+  <label for="objectif-cheval">Objectif de travail</label>
+  <input
+    id="objectif-cheval"
+    name="objectif"
+    placeholder="Ex. Chargement en van"
+  >
+
+  <button type="submit" class="button">
+    Enregistrer le cheval
+  </button>
+</form>
+
+<ul id="liste-chevaux"></ul>
 
         <ul id="liste-eleves" class="item-list">
           <li class="empty">Aucun élève enregistré pour le moment.</li>
