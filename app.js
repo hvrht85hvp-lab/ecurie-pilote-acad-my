@@ -123,7 +123,61 @@ function ajouterCheval(nom, objectif) {
 
   console.log("Cheval ajouté :", nomPropre);
 }
+const formulaireCheval = document.getElementById("form-cheval");
+const champNomCheval = document.getElementById("nom-cheval");
+const champObjectifCheval = document.getElementById("objectif-cheval");
+const listeChevaux = document.getElementById("liste-chevaux");
 
+function afficherChevaux() {
+  if (!listeChevaux) return;
+
+  listeChevaux.innerHTML = "";
+
+  chevaux.forEach(function (cheval) {
+    const ligne = document.createElement("li");
+    const texte = document.createElement("span");
+    const bouton = document.createElement("button");
+
+    texte.textContent = cheval.nom + " — " + cheval.objectif;
+    bouton.textContent = "Supprimer";
+    bouton.type = "button";
+
+    bouton.addEventListener("click", function () {
+      const index = chevaux.findIndex(function (item) {
+        return item.id === cheval.id;
+      });
+
+      if (index !== -1) {
+        chevaux.splice(index, 1);
+        localStorage.setItem(
+          "ecuriePilotChevaux",
+          JSON.stringify(chevaux)
+        );
+        afficherChevaux();
+      }
+    });
+
+    ligne.appendChild(texte);
+    ligne.appendChild(bouton);
+    listeChevaux.appendChild(ligne);
+  });
+}
+
+if (formulaireCheval && champNomCheval && listeChevaux) {
+  formulaireCheval.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    ajouterCheval(
+      champNomCheval.value,
+      champObjectifCheval.value
+    );
+
+    afficherChevaux();
+    formulaireCheval.reset();
+  });
+}
+
+afficherChevaux();
 
 
 
